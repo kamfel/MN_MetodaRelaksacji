@@ -15,6 +15,8 @@ public:
 	Matrix* GenerateAlphaMatrix();
 	double* GenerateBetaVector(double* B);
 
+	std::string ToString() const;
+
 	double* GetEquationSolutions(double* Beta, double Epsilon, unsigned MLI);
 
 	bool LoadMatrix(std::ifstream& ifs, double* B);

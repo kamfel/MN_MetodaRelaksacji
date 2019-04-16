@@ -51,6 +51,23 @@ double* Matrix::GenerateBetaVector(double* B) {
 	return Beta;
 }
 
+std::string Matrix::ToString() const
+{
+	std::string str("{");
+	str.reserve(50);
+
+	for (int i = 0; i < n; i++) {
+		str += '{';
+		for (int j = 0; j < n; j++) {
+			str += std::to_string(A[i][j]) + ", ";
+		}
+		str += '}';
+		if (i != 4) str += '\n';
+	}
+	str += '}';
+	return str;
+}
+
 double* Matrix::GetEquationSolutions(double* Beta, double Epsilon, unsigned MLI) {
 	double* X = new double[n];
 	memset(X, 0, sizeof(double)* n);

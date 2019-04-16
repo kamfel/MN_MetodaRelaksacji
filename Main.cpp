@@ -11,17 +11,27 @@ void ReadParams(unsigned& n, unsigned& MLI, double& Epsilon) {
 	std::cin >> Epsilon;
 }
 
+void SaveToFile(const Matrix& A, const Matrix& Alpha, double Epsilon, unsigned MLI, 
+	double* B, double* Beta, double* R, double* X, unsigned iter) 
+{
+	std::ofstream ofs("Raport.txt", std::ios_base::trunc | std::ios_base::out);
+	ofs << "Macierz A:\n" << A.ToString();
+	//TODO
+}
+
 int main() {
 	unsigned n = 5;
 	unsigned MLI = 60;
 	double Epsilon = 0.0001f;
 	double* X;
+	Matrix* Alpha;
+	double* Beta;
 
-	//ReadParams(n, MLI, Epsilon);
+	ReadParams(n, MLI, Epsilon);
 	Matrix A(n);
 	double* B = new double[n];
 
-	std::ifstream ifs("Zestaw5.txt");
+	std::ifstream ifs("Zestaw1.txt");
 	if (!ifs.is_open()) {
 		std::cout << "Nie znaleziono pliku. " << std::endl;
 		std::getchar();
@@ -33,7 +43,10 @@ int main() {
 		return -2;
 	}
 	try {
-		X = A.GenerateAlphaMatrix()->GetEquationSolutions(A.GenerateBetaVector(B), Epsilon, MLI);
+		Alpha = A.GenerateAlphaMatrix();
+		Beta = A.GenerateBetaVector(B);
+		X = Alpha->GetEquationSolutions(Beta, Epsilon, MLI);
+
 		std::cout << "Wektor X: ";
 		for (unsigned i = 0; i < n; i++) {
 			std::cout << X[i] << ", ";

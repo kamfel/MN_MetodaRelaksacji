@@ -17,7 +17,7 @@ public:
 
 	std::string ToString() const;
 
-	double* GetEquationSolutions(double* Beta, double Epsilon, unsigned MLI);
+	double* GetEquationSolutions(double* Beta, double Epsilon, unsigned MLI, double*& Rr, unsigned& iter);
 
 	bool LoadMatrix(std::ifstream& ifs, double* B);
 };

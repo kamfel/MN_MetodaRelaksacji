@@ -68,7 +68,7 @@ std::string Matrix::ToString() const
 	return str;
 }
 
-double* Matrix::GetEquationSolutions(double* Beta, double Epsilon, unsigned MLI) {
+double* Matrix::GetEquationSolutions(double* Beta, double Epsilon, unsigned MLI, double*& Rr, unsigned& iter) {
 	double* X = new double[n];
 	memset(X, 0, sizeof(double)* n);
 
@@ -103,6 +103,9 @@ double* Matrix::GetEquationSolutions(double* Beta, double Epsilon, unsigned MLI)
 			}
 		}
 	} while (iterator < MLI && abs(R[s]) > Epsilon);
+
+	Rr = R;
+	iter = iterator;
 
 	return X;
 }

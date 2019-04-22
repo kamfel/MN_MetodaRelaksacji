@@ -65,6 +65,13 @@ void SaveToFile(const Matrix& A, const Matrix& Alpha, double Epsilon, unsigned n
 	//Iteracje
 	ofs << "Iloœæ iteracji: " << iter << std::endl;
 
+	//Wektor bledu bezwzglednego
+	ofs << "Wektor b³êdu bezwzglêdnego:\n";
+	for (unsigned i = 0; i < n; i++) {
+		ofs << abs(1 - X[i]) << " ";
+	}
+	ofs << std::endl;
+
 	std::cout << "Zapisano do \"Raport.txt\"" << std::endl;
 
 	ofs.close();
